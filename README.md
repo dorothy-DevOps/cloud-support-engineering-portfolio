@@ -70,6 +70,6 @@ Status: Pending project documentation and authorization.
 
 ## Contact
 
-LinkedIn: [Add your LinkedIn profile]
+LinkedIn: [https://www.linkedin.com/in/nwakaego-dorothy-iruvbe/]
 
 GitHub: [Add your GitHub profile]
