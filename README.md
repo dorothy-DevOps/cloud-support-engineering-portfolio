@@ -72,4 +72,4 @@ Status: Pending project documentation and authorization.
 
 LinkedIn: [https://www.linkedin.com/in/nwakaego-dorothy-iruvbe/]
 
-GitHub: [Add your GitHub profile]
+GitHub: [https://github.com/dorothy-DevOps]
