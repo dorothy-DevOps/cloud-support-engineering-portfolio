@@ -38,7 +38,14 @@ Laptop Browser → AWS Security Group → EC2 Linux Instance → Nginx Web Serve
 Issues encountered and their solutions will be documented here.
 
 ## Evidence
-Screenshots will be added after completing each major stage.
+### Evidence
+
+The following screenshots demonstrate the successful deployment:
+
+1. [EC2 Instance Running](screenshots/01-ec2-instance-running.png)
+2. [Successful Linux Server Login](screenshots/02-successful-server-login.png)
+3. [Nginx Service Running](screenshots/03-nginx-running.png)
+4. [Nginx Welcome Page](screenshots/04-nginx-welcome-page.png).
 
 ## Project Status
 In Progress
