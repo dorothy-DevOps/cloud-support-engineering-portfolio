@@ -42,3 +42,34 @@ Screenshots will be added after completing each major stage.
 
 ## Project Status
 In Progress
+
+## Implementation Progress
+
+### Phase 1: EC2 Web Server Deployment — Completed
+
+**Tasks completed:**
+
+- Launched an Amazon EC2 instance using Amazon Linux 2023.
+- Configured Security Group rules for SSH and HTTP access.
+- Connected to the Linux server using EC2 Instance Connect.
+- Used Linux commands to inspect the server and check disk space.
+- Installed Nginx using the DNF package manager.
+- Enabled and started the Nginx service.
+- Verified that Nginx was active and running.
+- Tested the default Nginx welcome page using HTTP.
+
+**Result:** Successfully deployed and accessed a working Nginx web server on AWS EC2.
+
+**Status:** Phase 1 completed.
+
+### Evidence
+
+Screenshots documenting the deployment are stored in the `screenshots` folder.
+
+### Next Phase
+
+Replace the default Nginx welcome page with a sample EduTech LMS homepage and verify external HTTP access.
+
+
+
+
