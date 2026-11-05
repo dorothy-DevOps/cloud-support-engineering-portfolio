@@ -27,7 +27,7 @@ This repository documents my hands-on learning journey through practical project
 ## Projects
 
 ### 1. Traditional Web Server Deployment on AWS
-Status: Planned
+Status: In Progress
 
 - Deploy a Linux server using Amazon EC2.
 - Install and configure Nginx.
@@ -36,7 +36,7 @@ Status: Planned
 - Practise server troubleshooting.
 
 ### 2. Linux Server Administration
-Status: Planned
+Status: In Progress
 
 - Linux commands and file management.
 - User and permission management.
