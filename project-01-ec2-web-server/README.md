@@ -75,6 +75,30 @@ The following screenshots demonstrate the successful deployment:
 
 Replace the default Nginx welcome page with a sample EduTech LMS homepage and verify external HTTP access.
 
+## Phase 2: Deploying the EduTech LMS Homepage
+
+### Objective
+Replace the default Nginx welcome page with a sample Learning Management System (LMS) homepage hosted on the EC2 web server.
+
+### Tasks Completed
+- Accessed the EC2 Linux server using EC2 Instance Connect.
+- Located the Nginx web root directory: `/usr/share/nginx/html/`.
+- Opened and edited `index.html` using the Nano text editor.
+- Created a sample EduTech LMS homepage using HTML.
+- Saved the updated HTML file on the EC2 instance.
+- Used `curl http://localhost` to verify the updated webpage locally.
+- Accessed the updated LMS homepage through the EC2 instance's public IPv4 address.
+- Refreshed the browser to display the latest version of the webpage.
+
+### Result
+Successfully replaced the default Nginx welcome page with a sample EduTech LMS homepage accessible through the EC2 instance's public IPv4 address.
+
+### Evidence
+5. [EduTech LMS Homepage](screenshots/05-edutech-lms-homepage.png)
+
+### Phase 2 Status
+Completed.
+
 
 
 
