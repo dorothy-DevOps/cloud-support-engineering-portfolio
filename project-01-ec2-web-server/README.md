@@ -66,11 +66,13 @@ In Progress
 
 The following screenshots demonstrate the successful deployment:
 
-1. [EC2 Instance Running](screenshots/01-ec2-instance-running.png)
-2. [Successful Linux Server Login](screenshots/02-successful-server-login.png)
-3. [Nginx Service Running](screenshots/03-nginx-running.png)
-4. [Nginx Welcome Page](screenshots/04-nginx-welcome-page.png)
 
+1. [EC2 Instance Running](../../screenshots/01-ec2-instance-running.png)
+2. [Successful Linux Server Login](../../screenshots/02-successful-server-login.png)
+3. [Nginx Service Running](../../screenshots/03-nginx-running.png)
+4. [Nginx Welcome Page](../../screenshots/04-nginx-welcome-page.png)
+5. [EduTech LMS Homepage](../../screenshots/05-edutech-lms-homepage.png)
+   
 ### Next Phase
 
 Replace the default Nginx welcome page with a sample EduTech LMS homepage and verify external HTTP access.
@@ -93,8 +95,6 @@ Replace the default Nginx welcome page with a sample Learning Management System 
 ### Result
 Successfully replaced the default Nginx welcome page with a sample EduTech LMS homepage accessible through the EC2 instance's public IPv4 address.
 
-### Evidence
-5. [EduTech LMS Homepage](screenshots/05-edutech-lms-homepage.png)
 
 ### Phase 2 Status
 Completed.
