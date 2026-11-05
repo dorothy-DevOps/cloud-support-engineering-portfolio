@@ -99,6 +99,59 @@ Successfully replaced the default Nginx welcome page with a sample EduTech LMS h
 ### Phase 2 Status
 Completed.
 
+## Phase 3: Nginx Log Analysis and 404 Troubleshooting
+
+### Objective
+Investigate web server requests and diagnose a missing webpage using Nginx access and error logs.
+
+### Troubleshooting Activities
+
+1. Inspected the Nginx access log to identify incoming HTTP requests and response status codes.
+2. Inspected the Nginx error log to investigate missing file errors.
+3. Verified that the Nginx service was active using:
+
+   ```bash
+   sudo systemctl is-active nginx
+   ```
+
+4. Simulated a missing webpage by requesting `/test-page` through the browser.
+5. Confirmed that the server returned an HTTP `404 Not Found` response.
+6. Traced the failed request in the Nginx access log:
+
+   ```text
+   GET /test-page HTTP/1.1" 404
+   ```
+
+### Key Findings
+
+- The EC2 instance was reachable.
+- Nginx was running successfully.
+- The LMS homepage remained accessible.
+- The requested `/test-page` resource did not exist.
+- Nginx returned HTTP 404, indicating a missing resource rather than a server outage.
+
+### Troubleshooting Conclusion
+
+The investigation confirmed that the web server was healthy. The 404 response occurred because the requested page was not available in the Nginx document root.
+
+### Commands Used
+
+```bash
+sudo tail -n 10 /var/log/nginx/access.log
+sudo tail -n 10 /var/log/nginx/error.log
+sudo systemctl is-active nginx
+sudo tail -n 5 /var/log/nginx/access.log
+```
+
+### Skills Practised
+
+- Linux log inspection
+- Nginx service monitoring
+- HTTP status code interpretation
+- Basic web server troubleshooting
+- Identifying missing resources
+- Evidence-based technical diagnosis
+
 
 
 
