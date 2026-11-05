@@ -72,6 +72,8 @@ The following screenshots demonstrate the successful deployment:
 3. [Nginx Service Running](../../screenshots/03-nginx-running.png)
 4. [Nginx Welcome Page](../../screenshots/04-nginx-welcome-page.png)
 5. [EduTech LMS Homepage](../../screenshots/05-edutech-lms-homepage.png)
+6. [Nginx 404 Error Page](../../screenshots/06-nginx-404-page.png)
+7. [Nginx 404 Access Log](../../screenshots/07-nginx-404-access-log.png)
    
 ### Next Phase
 
