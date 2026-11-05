@@ -27,14 +27,14 @@ This repository documents my hands-on learning journey through practical project
 ## Projects
 
 ### 1. Traditional Web Server Deployment on AWS
+
 Status: In Progress
 
-- Deploy a Linux server using Amazon EC2.
-- Install and configure Nginx.
-- Host a sample LMS frontend.
-- Configure Security Groups.
-- Practise server troubleshooting.
+- Deployed a sample EduTech LMS homepage on Amazon EC2 using Nginx.
+- Configured server access and verified local and external connectivity.
+- Documented deployment steps, Linux commands and screenshots.
 
+Detailed documentation: [Project 01 – EC2 Web Server Deployment](project-01-ec2-web-server/README.md)
 ### 2. Linux Server Administration
 Status: In Progress
 
