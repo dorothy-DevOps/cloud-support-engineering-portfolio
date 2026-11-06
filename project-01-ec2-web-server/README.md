@@ -35,7 +35,10 @@ Laptop Browser → AWS Security Group → EC2 Linux Instance → Nginx Web Serve
 9. Document troubleshooting and lessons learned.
 
 ## Troubleshooting
-Issues encountered and their solutions will be documented here.
+This project includes practical troubleshooting exercises:
+
+1. [Nginx 404 Error Troubleshooting](#phase-3-nginx-log-analysis-and-404-troubleshooting)
+2. [Nginx Service Failure and Recovery](nginx-service-recovery.md)
 
 ## Evidence
 All screenshots will be documented here.
@@ -154,6 +157,42 @@ sudo tail -n 5 /var/log/nginx/access.log
 - Identifying missing resources
 - Evidence-based technical diagnosis
 
+## Phase 4: Nginx Service Failure and Recovery
+
+### Objective
+Simulate an Nginx service failure, investigate the cause, restore the service, and verify recovery.
+
+### Troubleshooting Activities
+- Checked the EC2 instance health and AWS status checks.
+- Verified the Nginx service status.
+- Simulated a service failure by stopping Nginx.
+- Confirmed that HTTP requests failed while the service was stopped.
+- Investigated the root cause.
+- Restarted Nginx and verified that the service was active.
+- Used curl to confirm a successful HTTP 200 OK response.
+
+### Root Cause
+The Nginx service had been stopped and was no longer listening for HTTP requests on port 80.
+
+### Resolution
+Restarted the Nginx service and confirmed successful HTTP connectivity.
+
+### Detailed Incident Report
+[View Nginx Service Recovery Report](nginx-service-recovery.md)
+
+### Evidence
+- [Nginx Service Restored](Screenshots/nginx-service-restored.png)
+- [HTTP 200 Recovery Verification](Screenshots/nginx-http-200-recovery.png)
+
+### Skills Practised
+- Linux service management
+- Nginx troubleshooting
+- Root cause analysis
+- HTTP connectivity testing
+- Service recovery and verification
+
+### Phase 4 Status
+Completed.
 
 
 
