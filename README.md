@@ -28,7 +28,7 @@ This repository documents my hands-on learning journey through practical project
 
 ### 1. Traditional Web Server Deployment on AWS
 
-Status: In Progress
+Status: Completed
 
 - Deployed a sample EduTech LMS homepage on Amazon EC2 using Nginx.
 - Configured server access and verified local and external connectivity.
