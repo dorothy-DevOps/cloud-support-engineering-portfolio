@@ -1,2 +1,4 @@
 This file was created while working on my feature branch.
+
 I am learning how Git branches help teams collaborate safely.
+Git feature branches allow developers to build and test new features independently.
