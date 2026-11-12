@@ -1,2 +1,2 @@
 This file was created while working on my feature branch.
-I am currently learning how git branches allow developers to work independently without disturbing the main project.
+I am learning how Git branches help teams collaborate safely.
