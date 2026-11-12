@@ -1,2 +1,2 @@
 This file was created while working on my feature branch.
-I am currently learning how git branches allow developers to work independently without disturbing the main project.
+Git feature branches allow developers to build and test new features independently.
