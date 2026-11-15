@@ -142,3 +142,45 @@ In this lab:
 - Execute commands inside running containers.
 - Understand Docker volumes and persistent storage.
 - Build custom Docker images using Dockerfiles.
+
+
+## Nginx Configuration
+
+Nginx uses its configuration file at:
+
+`/etc/nginx/conf.d/default.conf`
+
+Important directives:
+
+- `listen 80;` - Nginx listens on port 80 inside the container.
+- `server_name localhost;` - identifies the server name.
+- `location /` - defines how requests to the website root are handled.
+- `root /usr/share/nginx/html;` - specifies the website's document root.
+- `index index.html index.htm;` - specifies the default index files.
+
+### Docker Port Mapping
+
+Our container was created using:
+
+`docker run -d --name dorothy-nginx -p 8080:80 nginx`
+
+The port mapping follows this format:
+
+`-p HOST_PORT:CONTAINER_PORT`
+
+Therefore:
+
+- Host port: 8080
+- Container port: 80
+
+### Custom Webpage
+
+I replaced the default Nginx `index.html` with my own HTML webpage inside:
+
+`/usr/share/nginx/html/`
+
+I verified that Nginx served my custom webpage at `http://localhost:8080`.
+
+### Key Learning
+
+Nginx configuration determines where website files are located. The actual files must exist in the configured document root for Nginx to serve them.
