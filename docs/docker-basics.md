@@ -184,3 +184,45 @@ I verified that Nginx served my custom webpage at `http://localhost:8080`.
 ### Key Learning
 
 Nginx configuration determines where website files are located. The actual files must exist in the configured document root for Nginx to serve them.
+
+
+## Docker Bind Mounts
+
+A bind mount connects a directory or file on the host machine to a location inside a Docker container.
+
+### Bind Mount Practice
+
+Created a website folder on the host machine:
+
+`cloud-support-engineering-portfolio/website/`
+
+Created an Nginx container with a bind mount:
+
+```bash
+docker run -d \
+  --name dorothy-nginx-bindmount \
+  -p 8081:80 \
+  --mount type=bind,source=/mnt/c/Users/User/cloud-support-engineering-portfolio/website,target=/usr/share/nginx/html \
+  nginx
+```
+
+### Understanding the Command
+
+- `-d` runs the container in the background.
+- `--name` assigns the container a name.
+- `-p 8081:80` maps host port 8081 to container port 80.
+- `type=bind` specifies a bind mount.
+- `source` identifies the website folder on the host.
+- `target` identifies the destination inside the container.
+
+### Live Website Update
+
+Edited `website/index.html` directly in VS Code.
+
+After saving and refreshing the browser at `http://localhost:8081`, Nginx displayed the updated webpage without restarting the container or rebuilding the image.
+
+### Key Learning
+
+Bind mounts allow developers to modify application files on the host machine while the application runs inside a container.
+
+This is particularly useful during local application development.
