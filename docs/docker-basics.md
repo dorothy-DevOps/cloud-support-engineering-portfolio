@@ -226,3 +226,218 @@ After saving and refreshing the browser at `http://localhost:8081`, Nginx displa
 Bind mounts allow developers to modify application files on the host machine while the application runs inside a container.
 
 This is particularly useful during local application development.
+
+
+## Docker Volumes and Persistent Storage
+
+A Docker volume is a storage mechanism managed by Docker. It allows data to persist independently of a container's lifecycle.
+
+Unlike a bind mount, where the developer specifies a host directory, Docker manages the storage location of a named volume.
+
+### 1. Creating a Docker Volume
+
+Created a named volume:
+
+```bash
+docker volume create dorothy-data
+```
+
+List available volumes:
+
+```bash
+docker volume ls
+```
+
+Inspect a volume:
+
+```bash
+docker volume inspect dorothy-data
+```
+
+Docker reported the volume's mountpoint as:
+
+`/var/lib/docker/volumes/dorothy-data/_data`
+
+### 2. Attaching a Volume to a Container
+
+Created an Ubuntu container with the volume attached:
+
+```bash
+docker run -it --name dorothy-volume-test \
+  --mount source=dorothy-data,target=/data \
+  ubuntu bash
+```
+
+- `source=dorothy-data` identifies the existing Docker volume.
+- `target=/data` specifies where the volume is mounted inside the container.
+- `/data` is the directory through which the container accesses the volume.
+
+### 3. Creating Persistent Data
+
+Inside the container, created a file:
+
+```bash
+echo "My first Docker volume stores persistent data" > /data/important.txt
+```
+
+Read the file:
+
+```bash
+cat /data/important.txt
+```
+
+Verified the file:
+
+```bash
+ls -l /data
+```
+
+### 4. Testing Volume Persistence
+
+Exited the first container:
+
+```bash
+exit
+```
+
+Removed the stopped container:
+
+```bash
+docker rm dorothy-volume-test
+```
+
+Verified that the volume still existed:
+
+```bash
+docker volume ls
+```
+
+Created a new container using the same volume:
+
+```bash
+docker run -it --name dorothy-volume-test-2 \
+  --mount source=dorothy-data,target=/data \
+  ubuntu bash
+```
+
+Retrieved the original file:
+
+```bash
+cat /data/important.txt
+```
+
+The original content was successfully retrieved.
+
+**Result:** Data stored in the named volume survived the removal of the original container.
+
+## Docker Volume Backup and Recovery
+
+Persistent storage does not replace backups. If a volume is deleted or its underlying storage is damaged, data may be lost.
+
+### 1. Creating a Backup Directory
+
+Created a backup directory in the project:
+
+```bash
+mkdir -p docker-backups
+```
+
+### 2. Backing Up a Docker Volume
+
+Used a temporary Ubuntu container to create a compressed archive:
+
+```bash
+docker run --rm \
+  --mount source=dorothy-data,target=/data,readonly \
+  --mount type=bind,source="$(pwd)/docker-backups",target=/backup \
+  ubuntu \
+  tar -czf /backup/dorothy-data-backup.tar.gz -C /data .
+```
+
+Explanation:
+
+- `--rm` automatically removes the temporary container after execution.
+- `readonly` protects the original volume from modifications by the backup container.
+- The bind mount makes the host backup directory accessible inside the container.
+- `tar -czf` creates a compressed archive.
+- `-C /data .` archives the contents of the volume.
+
+### 3. Verifying the Backup
+
+Listed the backup file:
+
+```bash
+ls -lh docker-backups
+```
+
+Listed the archive contents:
+
+```bash
+tar -tzf docker-backups/dorothy-data-backup.tar.gz
+```
+
+The archive contained:
+
+- `important.txt`
+
+### 4. Restoring the Backup
+
+Created a separate recovery volume:
+
+```bash
+docker volume create dorothy-recovery
+```
+
+Restored the backup into the new volume:
+
+```bash
+docker run --rm \
+  --mount type=bind,source="$(pwd)/docker-backups",target=/backup,readonly \
+  --mount source=dorothy-recovery,target=/restore \
+  ubuntu \
+  tar -xzf /backup/dorothy-data-backup.tar.gz -C /restore
+```
+
+### 5. Verifying Recovery
+
+Checked the restored file:
+
+```bash
+docker run --rm \
+  --mount source=dorothy-recovery,target=/restore,readonly \
+  ubuntu \
+  cat /restore/important.txt
+```
+
+Successfully recovered the original content:
+
+`My first Docker volume stores persistent data`
+
+**Result:** Successfully backed up a Docker volume and restored its data into a separate volume.
+
+## Key Lessons Learned
+
+1. Containers and volumes have separate lifecycles.
+2. Named volumes preserve data when their containers are removed.
+3. A new container can reuse an existing named volume.
+4. Bind mounts connect host directories to containers.
+5. Docker volumes are managed by Docker.
+6. Persistent storage is not the same as a backup.
+7. Backups should be stored separately from the original data.
+8. Recovery should be tested, not merely assumed.
+
+## Practical Lab Resources
+
+- Original volume: `dorothy-data`
+- Recovery volume: `dorothy-recovery`
+- Test file: `important.txt`
+- Backup directory: `docker-backups/`
+- Backup archive: `dorothy-data-backup.tar.gz`
+
+## Next Learning Objectives
+
+- Build custom Docker images using Dockerfiles.
+- Understand image layers and build caching.
+- Tag and manage custom images.
+- Publish images to Docker Hub.
+
