@@ -162,3 +162,60 @@ Completed:
 ### Next learning objective
 
 Dockerfiles and building custom Docker images.
+## Docker Practice – 17 November 2026
+
+### Custom Docker Images
+
+Build an image from a Dockerfile:
+
+```bash
+docker build -t dorothy-portfolio-website:v1 .
+```
+
+List available images:
+
+```bash
+docker images
+```
+
+Run a container from a custom image:
+
+```bash
+docker run -d --name dorothy-custom-website -p 8082:80 dorothy-portfolio-website:v1
+```
+
+### COPY vs Bind Mount
+
+**COPY:** Copies files from the host into the image during the build.
+
+**Bind mount:** Connects a host directory to a directory inside a running container.
+
+Example:
+
+```bash
+docker run -d \
+  --name dorothy-dev-website \
+  -p 8084:80 \
+  -v "$(pwd)/website:/usr/share/nginx/html" \
+  dorothy-portfolio-website:v1
+```
+
+### Important Commands
+
+| Command | Purpose |
+|---|---|
+| `docker build` | Build a custom image |
+| `docker images` | List images |
+| `docker run` | Create and start a container |
+| `-p 8084:80` | Map host port 8084 to container port 80 |
+| `-v HOST:CONTAINER` | Create a bind mount |
+| `docker ps` | List running containers |
+
+### Practical Achievement
+
+Built a custom Nginx image and ran two containers:
+
+- `dorothy-custom-website` – port 8082, using files copied into the image.
+- `dorothy-dev-website` – port 8084, using a bind mount.
+
+Verified that changes to the local HTML file appeared in the development container without rebuilding the image or restarting it.

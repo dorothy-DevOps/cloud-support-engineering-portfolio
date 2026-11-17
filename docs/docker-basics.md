@@ -441,3 +441,66 @@ Successfully recovered the original content:
 - Tag and manage custom images.
 - Publish images to Docker Hub.
 
+## 7. Building Custom Docker Images with Dockerfiles
+
+A Dockerfile is a text file containing instructions Docker uses to build a custom image.
+
+### Dockerfile used
+
+```dockerfile
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+COPY website/ .
+EXPOSE 80
+```
+
+### Build the custom image
+
+```bash
+docker build -t dorothy-portfolio-website:v1 .
+```
+
+### Run a container from the custom image
+
+```bash
+docker run -d --name dorothy-custom-website -p 8082:80 dorothy-portfolio-website:v1
+```
+
+The website files were copied into the image during the build process.
+
+## 8. Docker COPY vs Bind Mounts
+
+### COPY
+
+`COPY` copies files from the host into the image during image building.
+
+Changes made to the original host files do not automatically appear in existing containers.
+
+To apply changes, rebuild the image and create a new container.
+
+### Bind Mount
+
+A bind mount connects a directory on the host machine to a directory inside a container.
+
+Example:
+
+```bash
+docker run -d \
+  --name dorothy-dev-website \
+  -p 8084:80 \
+  -v "$(pwd)/website:/usr/share/nginx/html" \
+  dorothy-portfolio-website:v1
+```
+
+This allowed me to edit `website/index.html` directly in VS Code and see the changes in my browser without rebuilding the image or restarting the container.
+
+### Key Differences
+
+| COPY | Bind Mount |
+|---|---|
+| Copies files into the image | Connects host files to a container directory |
+| Used during image building | Used when creating or running a container |
+| Changes require a new image and container | Changes are reflected immediately when saved |
+| Commonly used for production images | Very useful for local development |
+
+**Practical lesson:** Bind mounts are useful during development, while COPY is commonly used to package application files into production images.
