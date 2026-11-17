@@ -504,3 +504,52 @@ This allowed me to edit `website/index.html` directly in VS Code and see the cha
 | Commonly used for production images | Very useful for local development |
 
 **Practical lesson:** Bind mounts are useful during development, while COPY is commonly used to package application files into production images.
+
+## Docker Image Layers and Build Cache
+
+### Docker Image Layers
+Docker builds images using layers. Each Dockerfile instruction can create a layer or contribute metadata to the image.
+
+For my portfolio website, the Dockerfile contains:
+
+```dockerfile
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+COPY website/ .
+EXPOSE 80
+```
+
+- `FROM` provides the base image.
+- `WORKDIR` sets the working directory.
+- `COPY` copies website files into the image.
+- `EXPOSE` documents the container's expected listening port.
+
+### Docker Build Cache
+Docker uses build cache to reuse previous build results and make image builds faster.
+
+I practised building an image using:
+
+```bash
+docker build -t dorothy-portfolio-website:cache-test .
+```
+
+I observed Docker reuse cached build steps.
+
+### Disabling Build Cache
+
+I also tested:
+
+```bash
+docker build --no-cache -t dorothy-portfolio-website:no-cache-test .
+```
+
+The `--no-cache` option prevents reuse of cached build layers.
+
+### Key Lessons
+1. Docker images consist of layers.
+2. Build cache improves build speed and efficiency.
+3. Changes to files used by `COPY` can invalidate its cache.
+4. `--no-cache` is useful when troubleshooting or when a fresh execution of build steps is required.
+5. Docker build output helps identify cached and newly executed steps.
+
+**Practical project:** `dorothy-portfolio-website`
