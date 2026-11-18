@@ -553,3 +553,47 @@ The `--no-cache` option prevents reuse of cached build layers.
 5. Docker build output helps identify cached and newly executed steps.
 
 **Practical project:** `dorothy-portfolio-website`
+
+## Docker Build Context and .dockerignore Experiment
+
+### Objective
+Understand how `.dockerignore` controls which files Docker can access during an image build.
+
+### Experiment
+I created a temporary Dockerfile that explicitly requested both the website and screenshots directories:
+
+```dockerfile
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+COPY website/ .
+COPY screenshots/ /screenshots/
+EXPOSE 80
+```
+
+### Test 1: Screenshots excluded
+
+With `screenshots/` listed in `.dockerignore`, Docker failed at:
+
+```dockerfile
+COPY screenshots/ /screenshots/
+```
+
+Docker reported a `CopyIgnoredFile` warning because the screenshots directory was excluded from the build context.
+
+### Test 2: Screenshots included
+
+After temporarily removing `screenshots/` from `.dockerignore`, the build succeeded.
+
+In the latest test, BuildKit reported a build-context transfer of approximately 218.39 KB.
+
+### Findings
+
+1. `.dockerignore` excludes specified files and directories from the Docker build context.
+2. Docker cannot copy files that have been excluded from the build context.
+3. BuildKit can optimise context transfer by sending only files needed by the build.
+4. Unnecessary files should not be included in production images.
+5. `.dockerignore` and `.gitignore` serve different purposes: one controls Docker build context, while the other controls Git tracking.
+
+### Conclusion
+
+I demonstrated how `.dockerignore` prevents unwanted files from entering a Docker build context. I also observed how BuildKit optimises context transfer based on the files requested by the Dockerfile.
