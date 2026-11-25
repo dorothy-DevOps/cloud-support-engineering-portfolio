@@ -599,6 +599,51 @@ docker stop dorothy-nginx
 ```
 
 Stops the named container but keeps it available for later use.
+### Docker Troubleshooting – Practical Commands
+
+| No. | Command | Purpose | Where to Run |
+|---|---|---|---|
+| 1 | `docker ps` | Check running containers, status and published ports | Ubuntu/WSL host |
+| 2 | `docker logs dorothy-nginx` | View container logs and investigate errors or failed requests | Ubuntu/WSL host |
+| 3 | `docker inspect dorothy-nginx` | Examine detailed container configuration, status, IP address, network and port bindings | Ubuntu/WSL host |
+| 4 | `docker exec -it dorothy-nginx sh` | Enter the running Nginx container | Ubuntu/WSL host |
+| 5 | `ls -la /usr/share/nginx/html` | List website files and permissions | Inside container |
+| 6 | `cat /etc/nginx/conf.d/default.conf` | Display Nginx configuration, including document root and index settings | Inside container |
+| 7 | `cat /usr/share/nginx/html/index.html` | Display the website's HTML source code | Inside container |
+| 8 | `exit` | Leave the container shell and return to Ubuntu/WSL | Inside container |
+| 9 | `curl -I http://localhost:8080` | Test the website and display HTTP response headers | Ubuntu/WSL host |
+
+#### Important concepts learned
+
+**Container networking**
+- Container IP: `172.17.0.2`
+- Docker bridge gateway: `172.17.0.1`
+- Host port: `8080`
+- Container port: `80`
+- Network mode: `bridge`
+
+**Nginx website configuration**
+- Document root: `/usr/share/nginx/html`
+- Default index file: `index.html`
+- Configuration file: `/etc/nginx/conf.d/default.conf`
+
+**HTTP status codes**
+- `200 OK` – Request successful.
+- `404 Not Found` – Requested resource could not be found.
+- `500 Internal Server Error` – Server encountered an internal problem.
+
+#### Practical troubleshooting lessons
+
+1. A running container does not automatically mean its application is working.
+2. Container logs help identify startup issues and failed requests.
+3. `docker inspect` reveals detailed container and networking information.
+4. Nginx uses its document root to locate website files.
+5. `curl -I` helps verify whether a website is responding successfully.
+6. A 404 error means the server was reached, but the requested resource was not found. Investigate the website files, URL and Nginx configuration before restarting the container.
+
+**Practical exercise:** Successfully investigated the `dorothy-nginx` container, examined its logs and configuration, inspected its website files, and verified its HTTP response.
+
+**Result:** `HTTP/1.1 200 OK` – Nginx successfully served the website.
 
 
 # 6. Advanced Docker
