@@ -44,11 +44,26 @@ Status: In Progress
 - Log investigation.
 
 ### 3. Docker Containerization
-Status: Planned
 
-- Build Docker images.
-- Create and configure containers.
-- Deploy and troubleshoot containerized applications.
+Status: In Progress
+
+Completed practical work:
+- Pulled and managed Docker images.
+- Created, started, stopped and inspected containers.
+- Deployed and accessed Nginx containers using port mapping.
+- Used Docker logs and container shell commands for troubleshooting.
+- Worked with bind mounts and named volumes.
+- Practised volume backup and recovery.
+- Built a custom website image using a Dockerfile.
+- Used a .dockerignore file to manage the build context.
+- Created and inspected a user-defined Docker bridge network.
+- Connected containers and tested container-to-container communication.
+- Practised Docker DNS resolution, IP routing, and network disconnection/reconnection.
+
+Upcoming work:
+- Docker Compose.
+- Container security and image optimisation.
+- An integrated containerized application project.
 
 ### 4. AWS ECS and Fargate Deployment
 Status: Planned

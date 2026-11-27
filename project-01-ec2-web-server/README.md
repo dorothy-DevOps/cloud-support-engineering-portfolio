@@ -70,13 +70,13 @@ Completed
 The following screenshots demonstrate the successful deployment:
 
 
-1. [EC2 Instance Running](../../screenshots/01-ec2-instance-running.png)
-2. [Successful Linux Server Login](../../screenshots/02-successful-server-login.png)
-3. [Nginx Service Running](../../screenshots/03-nginx-running.png)
-4. [Nginx Welcome Page](../../screenshots/04-nginx-welcome-page.png)
-5. [EduTech LMS Homepage](../../screenshots/05-edutech-lms-homepage.png)
-6. [Nginx 404 Error Page](../../screenshots/06-nginx-404-page.png)
-7. [Nginx 404 Access Log](../../screenshots/07-nginx-404-access-log.png)
+1. [EC2 Instance Running](../screenshots/project-01-ec2-web-server/01-ec2-instance-running.png)
+2. [Successful Linux Server Login](../screenshots/project-01-ec2-web-server/02-successful-server-login.png)
+3. [Nginx Service Running](../screenshots/project-01-ec2-web-server/03-nginx-running.png)
+4. [Nginx Welcome Page](../screenshots/project-01-ec2-web-server/04-nginx-welcome-page.png)
+5. [EduTech LMS Homepage](../screenshots/project-01-ec2-web-server/05-edutech-lms-homepage.png)
+6. [Nginx 404 Error Page](../screenshots/project-01-ec2-web-server/06-nginx-404-page.png)
+7. [Nginx 404 Access Log](../screenshots/project-01-ec2-web-server/07-nginx-404-access-log.png)
    
 ### Next Phase
 
@@ -181,10 +181,10 @@ Restarted the Nginx service and confirmed successful HTTP connectivity.
 [View Nginx Service Recovery Report](nginx-service-recovery.md)
 
 ### Evidence
-- [Nginx Service Restored](Screenshots/nginx-service-restored.png)
-- [HTTP 200 Recovery Verification](Screenshots/nginx-http-200-recovery.png)
+- [Nginx Service Restored](../screenshots/project-01-ec2-web-server/nginx-service-restored.png)
+- [HTTP 200 Recovery Verification](../screenshots/project-01-ec2-web-server/nginx-http-200-recovery.png)
 
-### Skills Practised
+## Skills Practised
 - Linux service management
 - Nginx troubleshooting
 - Root cause analysis
