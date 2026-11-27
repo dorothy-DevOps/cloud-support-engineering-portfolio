@@ -56,9 +56,11 @@ Completed practical work:
 - Practised volume backup and recovery.
 - Built a custom website image using a Dockerfile.
 - Used a .dockerignore file to manage the build context.
+- Created and inspected a user-defined Docker bridge network.
+- Connected containers and tested container-to-container communication.
+- Practised Docker DNS resolution, IP routing, and network disconnection/reconnection.
 
 Upcoming work:
-- Docker networking.
 - Docker Compose.
 - Container security and image optimisation.
 - An integrated containerized application project.
